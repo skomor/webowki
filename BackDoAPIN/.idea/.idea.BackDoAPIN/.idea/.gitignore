@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.BackDoAPIN.iml
+# Datasource local storage ignored files
+/../../../../../../../:\_Semestr 7\_AI\BackDoAPIN\.idea\.idea.BackDoAPIN\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
