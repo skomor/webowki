@@ -1,4 +1,4 @@
-namespace WebApi.Entities
+namespace BackDoAPIN.Entities
 {
     public class User
     {

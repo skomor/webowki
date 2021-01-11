@@ -1,6 +1,6 @@
 ﻿﻿using System;
 
- namespace WebApi.Entities
+ namespace BackDoAPIN.Entities
 {
     public class Product
     {

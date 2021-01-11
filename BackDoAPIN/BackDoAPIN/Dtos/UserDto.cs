@@ -1,4 +1,4 @@
-namespace WebApi.Dtos
+namespace BackDoAPIN.Dtos
 {
     public class UserDto
     {

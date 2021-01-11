@@ -1,4 +1,4 @@
-namespace WebApi.Helpers
+namespace BackDoAPIN.Helpers
 {
     public class AppSettings
     {

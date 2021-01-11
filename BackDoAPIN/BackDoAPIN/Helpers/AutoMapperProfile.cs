@@ -1,8 +1,8 @@
 using AutoMapper;
-using WebApi.Dtos;
-using WebApi.Entities;
+using BackDoAPIN.Dtos;
+using BackDoAPIN.Entities;
 
-namespace WebApi.Helpers
+namespace BackDoAPIN.Helpers
 {
     public class AutoMapperProfile : Profile
     {

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from '../_actions/user_actions';
-import {withRouter} from "react-router-dom";
 
 class LoginPage extends React.Component {
     constructor(props) {

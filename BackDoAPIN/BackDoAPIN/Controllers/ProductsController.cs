@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApi.Entities;
-using WebApi.Helpers;
+using BackDoAPIN.Entities;
+using BackDoAPIN.Helpers;
 
 namespace BackDoAPIN.Controllers
 {

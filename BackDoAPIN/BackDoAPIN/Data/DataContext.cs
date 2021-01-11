@@ -1,7 +1,8 @@
+using BackDoAPIN.Entities;
 using Microsoft.EntityFrameworkCore;
-using WebApi.Entities;
 
-namespace WebApi.Helpers
+
+namespace BackDoAPIN.Helpers
 {
     public class DataContext : DbContext
     {
@@ -9,7 +10,7 @@ namespace WebApi.Helpers
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<WebApi.Entities.Product> Product { get; set; }
+        public DbSet<BackDoAPIN.Entities.Product> Product { get; set; }
       //  public DbSet<Product> Products { get; set; }
     }
 }

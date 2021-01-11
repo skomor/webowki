@@ -13,6 +13,7 @@ import {Redirect} from "react-router";
 import PricesPage from "../Pages/PricesPage";
 import AboutPage from "../Pages/AboutPage";
 import StorePage from "../Pages/StorePage/StorePage";
+import SingleProductPage from "../Pages/SingleProductPage";
 
 
 class App extends React.Component {
@@ -47,7 +48,8 @@ class App extends React.Component {
                                     <Route path="/register" component={(RegisterPage)}/>
                                     <Route path="/cennik" component={PricesPage}/>
                                     <Route path="/about" component={AboutPage}/>
-                                    <Route path="/products" component={StorePage}/>
+                                    <Route exact  path="/products" component={StorePage}/>
+                                    <PrivateRoute path="/products/:id" component={() => <SingleProductPage />}/>
                                 </div>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 ﻿﻿using System.Collections.Generic;
-using WebApi.Entities;
+using BackDoAPIN.Entities;
 
-namespace WebApi.Services
+namespace BackDoAPIN.Services
 {
     public interface IUserService
     {

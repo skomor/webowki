@@ -1,9 +1,9 @@
-import React, {useContext, useEffect} from 'react';
-import ProductItem from './ProductItem';
+import React from 'react';
 //import { ProductsContext } from '../../contexts/ProductsContext';
 import styles from './productsGrid.scss';
 import {connect} from "react-redux";
 import {productActions} from "../../_actions/product_action";
+import ProductItem from "./ProductItem";
 
 class ProductsGrid extends React.Component{
 
@@ -18,7 +18,7 @@ class ProductsGrid extends React.Component{
         return (
             <div>
                 {/*{ products[1].id }*/}
-                <div className={styles.p__grid}>
+            {/*    <div className={styles.p__grid}>
 
                     {products.loading && <em>Loading products...</em>}
                     {products.error && <span className="text-danger">ERROR: {products.error}</span>}
@@ -32,10 +32,25 @@ class ProductsGrid extends React.Component{
                         )}
                     </ul>
                     }
-                </div>
-                <div className={styles.p__footer}>
+                </div> lista z main page*/}
+                {products.error && <span className="text-danger">ERROR: {products.error}</span>}
+                {products.loading && <em>Loading products...</em>}
+                {products.items &&
+                <div className={styles.p__grid}>
 
-                </div>
+                    {
+                        products.items.map(product => (
+                            <ProductItem key={product.id} product={product}/>
+                        ))
+                    }
+
+
+                </div>}
+               {/* {products.items &&
+                <img src={products.items[1].photo} alt=""> </img>}*/}
+             {/*   <div className={styles.p__footer}>
+
+                </div>*/}
             </div>
         );
     }

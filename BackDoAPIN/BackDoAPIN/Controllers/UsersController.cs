@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Services;
-using WebApi.Dtos;
+using BackDoAPIN.Services;
+using BackDoAPIN.Dtos;
 using AutoMapper;
 using System.IdentityModel.Tokens.Jwt;
-using WebApi.Helpers;
+using BackDoAPIN.Helpers;
 using Microsoft.Extensions.Options;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
-using WebApi.Entities;
+using BackDoAPIN.Entities;
 using Microsoft.AspNetCore.Authorization;
 
-namespace WebApi.Controllers
+namespace BackDoAPIN.Controllers
 {
     [Authorize]
     [Route("[controller]")]
