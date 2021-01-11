@@ -29,8 +29,16 @@ class SingleProductPage extends React.Component {
         return (
             <div>
                 {products.loading && <em>Loading products...</em>}
-                {products.items && selectedProductIndex !== undefined &&
-                <div>SINGLE PRODUCT PAGE {products.items[selectedProductIndex].brand}</div>}
+                {products.items && selectedProductIndex !== null &&
+                <div>SINGLE PRODUCT PAGE
+                    <p>{products.items[selectedProductIndex].brand} </p>
+                    <p>{products.items[selectedProductIndex].gender? "m" : "k"} </p>
+                    <p>{products.items[selectedProductIndex].lenght} </p>
+                    <p>{products.items[selectedProductIndex].price} </p>
+
+
+
+                </div>}
             </div>
         )
 
