@@ -58,6 +58,10 @@ class NavBarCustom extends React.Component {
                                 </NavItem>
 
                                 <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/cart">Koszyk</NavLink>
+                                </NavItem>
+
+                                <NavItem>
                                     <NavLink tag={Link} className="text-dark"
                                              to="/Login">{this.props.loggedIn ? "Wyloguj" : "Zaloguj"}</NavLink>
                                 </NavItem>

@@ -14,6 +14,7 @@ import PricesPage from "../Pages/PricesPage";
 import AboutPage from "../Pages/AboutPage";
 import StorePage from "../Pages/StorePage/StorePage";
 import SingleProductPage from "../Pages/SingleProductPage";
+import CartPage from "../Pages/CartPage/CartPage";
 
 
 class App extends React.Component {
@@ -49,6 +50,7 @@ class App extends React.Component {
                                     <Route path="/cennik" component={PricesPage}/>
                                     <Route path="/about" component={AboutPage}/>
                                     <Route exact  path="/products" component={StorePage}/>
+                                    <Route exact  path="/cart" component={CartPage}/>
                                     <PrivateRoute path="/products/:id" component={() => <SingleProductPage />}/>
                                 </div>
                             </div>
