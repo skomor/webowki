@@ -26,18 +26,19 @@ function clear() {
 
 function checkout(checkoutItems) {
     return dispatch => {
-        dispatch(request(checkoutItems));
-        cartService.checkout(checkoutItems)
-            .then(
+        dispatch(request());
+        for (const item in checkoutItems) {
+            cartService.checkout(item).then(
                 () => {
                     dispatch(success());
-
                 },
                 error => {
                     dispatch(failure(error));
                     dispatch(alertActions.error(error));
                 }
             );
+        }
+
     };
 
     function request() { return { type: cartConstants.CHECKOUT_REQUEST } }

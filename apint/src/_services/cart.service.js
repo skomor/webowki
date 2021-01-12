@@ -6,14 +6,26 @@ export const cartService = {
 
 };
 
-function checkout(checkoutItems,User) {
+function checkout(item) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify()
+        body: JSON.stringify(localStorage.getItem('user').id)
+    };
+    const requestOptionsForItems = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: item
     };
 
-    return fetch(config.apiUrl + '/users/authenticate', requestOptions)
+    return fetch(config.apiUrl + '/api/rentals', requestOptions)
+        .then(handleResponse, handleError).then(
+
+        )
+
+
+
+   /*  fetch(config.apiUrl + '/users/authenticate', requestOptions)
         .then(handleResponse, handleError)
         .then(user => {
             if (user && user.token) {
@@ -21,7 +33,7 @@ function checkout(checkoutItems,User) {
             }
 
             return user;
-        });
+        });*/
 }
 
 
