@@ -19,9 +19,9 @@ class CartPage extends React.Component {
 
 
 
-     handleCheckout = (checkoutItems) => {
+    handleCheckout = (checkoutItems) => {
         this.setState({isCheckout: true})
-        this.props.dispatch(cartActions.checkout(checkoutItems));
+       // this.props.dispatch(cartActions.checkout(checkoutItems));
 
     }
     clearCart = () => {
@@ -80,7 +80,7 @@ class CartPage extends React.Component {
                                 <hr className="my-4"/>
                                 <div className="text-center">
                                     <button type="button" className="btn btn-primary mb-2"
-                                            onClick={this.handleCheckout(CartReducer.checkoutItems)}>CHECKOUT
+                                            onClick={() => {this.handleCheckout(CartReducer.checkoutItems)}}>CHECKOUT
                                     </button>
                                     <button type="button" className="btn btn-outlineprimary btn-sm"
                                             onClick={this.clearCart}>CLEAR
