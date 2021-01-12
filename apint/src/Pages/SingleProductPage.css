@@ -1,0 +1,56 @@
+.content{
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 1px skyblue;
+}
+
+#specifications {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+#specifications td, #specifications th {
+    border: 1px solid lightblue;
+    padding: 8px;
+  }
+  
+#specifications tr:nth-child(even){background-color: #f2f2f2;}
+  
+#specifications tr:hover {background-color: #ddd;}
+  
+#specifications th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: skyblue;
+    color: white;
+    
+  }
+
+#logOutBtn{
+  background-color: skyblue;
+  text-decoration: none;
+  color: black;
+  border-radius: 8px;
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 0 2px 1px lightgrey;
+  width: 90px;
+}
+
+#logOutBtn:hover{
+  background-color: snow;
+  color: rgb(41, 145, 180);
+  box-shadow: inset 0 0 2em lightgrey, 0 0 1em rgba(0, 119, 158, 0.692);
+}
+
+.justify{
+  text-align: justify;
+}
+
+.centerText{
+  text-align: center;
+}

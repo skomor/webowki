@@ -15,6 +15,7 @@ import AboutPage from "../Pages/AboutPage";
 import StorePage from "../Pages/StorePage/StorePage";
 import SingleProductPage from "../Pages/SingleProductPage";
 import CartPage from "../Pages/CartPage/CartPage";
+import StartPage from "../Pages/StartPage";
 
 
 class App extends React.Component {
@@ -34,9 +35,8 @@ class App extends React.Component {
         return (
             <Router history={history}>
                 <Layout>
-                    <div className="jumbotron">
-                        <div className="container">
-
+                    <div class="container">
+                        <div class="row">
                             <div className="col-sm-8 col-sm-offset-2">
                                 {alert.message &&
                                 <div className={`alert ${alert.type}`}>{alert.message}</div>
@@ -51,6 +51,7 @@ class App extends React.Component {
                                     <Route path="/about" component={AboutPage}/>
                                     <Route exact  path="/products" component={StorePage}/>
                                     <Route exact  path="/cart" component={CartPage}/>
+                                    <Route exact  path="/start" component={StartPage}/>
                                     <PrivateRoute path="/products/:id" component={() => <SingleProductPage />}/>
                                 </div>
                             </div>

@@ -1,41 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import './productStyle.css'
 
 const ProductItem = ({product}) => {
 
 
 
     return (
-        <div className="card card-body">
-            <img
-               style={{display: "block", margin: "0 auto 10px", maxHeight: "200px"}}
-                 className="img-fluid"
-                 src={`data:image/png;base64,${product.photo}`} alt="zjecie"/>
-            <p>{product.name}</p>
-            <h4 className="text-left">Cena za dobę: {product.price}</h4>
-            <h4 className="text-left">dł: {product.lenght}</h4>
-            <h6 className="text-left">płeć: {product.gender ? "m" : "k"  }</h6>
+        <div className="col-md-6 float-md-left">
+            <Link to={{pathname: `/products/${product.id}`, product: product}}>
+                <div className="productLink">
+                    <img
+                        style={{display: "block", margin: "0 auto 10px", maxHeight: "200px"}}
+                        className="img-fluid"
+                        src={`data:image/png;base64,${product.photo}`} alt="zdjecie"/>
+                    <h4>{product.name}</h4>
+                    <table>
+                        <tr>
+                            <td>Koszt/doba:</td>
+                            <td>{Math.floor(product.price / 6)} PLN</td>
 
-            <h4 className="text-left">Cena za godzinę: {Math.floor(product.price/6)}</h4>
-            <div className="text-right">
-                <Link  to={{pathname:`/products/${product.id}`, product: product}} className="btn btn-link btn-sm mr-2"  >Wypożycz</Link>
+                        </tr>
+                        <tr>
+                            <td>Koszt/godzina:</td>
+                            <td>{product.price} PLN</td>
 
-               {/* {
-                    isInCart(product) &&
-                    <button
-                        onClick={() => increase(product)}
-                        className="btn btn-outline-primary btn-sm">Add more</button>
-                }
+                        </tr>
+                        <tr>
+                            <td>Długość:</td>
+                            <td>{product.lenght} [cm]</td>
 
-                {
-                    !isInCart(product) &&
-                    <button
-                        onClick={() => addProduct(product)}
-                        className="btn btn-primary btn-sm">Add to cart</button>
-                }*/}
+                        </tr>
+                        <tr>
+                            <td>Płeć:</td>
+                            <td>{product.gender ? "M" : "K"}</td>
+                        </tr>
+                    </table>
 
-            </div>
+
+                </div>
+            </Link>
         </div>
     );
 }

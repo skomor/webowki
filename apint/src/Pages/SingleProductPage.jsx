@@ -16,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import {Button} from "reactstrap/es";
 import {cartActions} from "../_actions/cart_actions";
-
+import '../Pages/SingleProductPage.css';
 const marks = [
     {
         value: 9,
@@ -179,11 +179,61 @@ class SingleProductPage extends React.Component {
             <div>
                 {products.loading && <em>Loading products...</em>}
                 {products.items && selectedProductIndex !== null &&
-                <div>SINGLE PRODUCT PAGE
-                    <p>{products.items[selectedProductIndex].brand} </p>
-                    <p>{products.items[selectedProductIndex].gender ? "m" : "k"} </p>
-                    <p>{products.items[selectedProductIndex].lenght} </p>
-                    <p>{products.items[selectedProductIndex].price} </p>
+                <div>
+                    <div class="content">
+                        <h3>{products.items[selectedProductIndex].name}</h3>
+                        <hr/>
+                        <img
+                            style={{display: "block", margin: "0 auto 10px", maxHeight: "200px" }}
+                            className="img-fluid"
+                            src={`data:image/png;base64,${products.items[selectedProductIndex].photo}`} alt="zdjecie"/>
+                        <br/>
+                        <h4>Dane produktu</h4>
+                        <hr/>
+                        <table id="specifications">
+                            <tr>
+                                <td>Producent:</td>
+                                <td>{products.items[selectedProductIndex].brand}</td>
+                            </tr>
+                            <tr>
+                                <td>Typ:</td>
+                                <td>{products.items[selectedProductIndex].type} [cm]</td>
+                            </tr>
+
+                            <tr>
+                                <td>Długość:</td>
+                                <td>{products.items[selectedProductIndex].lenght} [cm]</td>
+                            </tr>
+                            <tr>
+                                <td>Cena rynkowa:</td>
+                                <td>{products.items[selectedProductIndex].retailprice} [zł]</td>
+                            </tr>
+                            <tr>
+                                <td>Płeć użytkownika:</td>
+                                <td>{products.items[selectedProductIndex].gender? "M" : "K"}</td>
+                            </tr>
+                            <tr>
+                                <td>Koszt/doba:</td>
+                                <td>{Math.floor(products.price/6)} PLN</td>
+
+                            </tr>
+                            <tr>
+                                <td>Koszt/godzina:</td>
+                                <td>{products.items[selectedProductIndex].price} PLN</td>
+
+                            </tr>
+                        </table>
+                        <br/>
+                        <h4>Opis</h4>
+                        <hr/>
+                        <p>{products.items[selectedProductIndex].description} </p>
+
+                        <br/><br/>
+
+                        <h4>Terminarz wypożyczenia</h4>
+                        <hr/>
+                        kalendarz
+                    </div>
                     <FormControl component="fieldset">
                         <FormLabel component="legend">Gender</FormLabel>
                         <RadioGroup aria-label="gender" name="gender1" value={dailyOrHourly}

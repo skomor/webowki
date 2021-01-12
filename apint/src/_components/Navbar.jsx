@@ -34,14 +34,20 @@ class NavBarCustom extends React.Component {
     render() {
 
         return (
-            <header>
-                <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
+            <header className="sticky-top">
+                <Navbar
+                    className="navbar-expand-sm navbar-toggleable-sm ng-dark border-bottom box-shadow mb-3 navbar-dark bg-light "
+                    light>
                     <Container>
-                        <NavbarBrand tag={Link} to="/Home">JANE AHONENE</NavbarBrand>
+                        <NavbarBrand tag={Link} to="/Home" className="text-dark">Wypożyczalnia sprzętu narciarskiego
+                            JANE AHONENE</NavbarBrand>
                         <NavbarToggler onClick={this.toggleNavbar} className="mr-2"/>
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed}
                                   navbar>
                             <ul className="navbar-nav flex-grow">
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/start">Start</NavLink>
+                                </NavItem>
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/Home">Home</NavLink>
                                 </NavItem>
@@ -56,6 +62,7 @@ class NavBarCustom extends React.Component {
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/products">Rezerwuj</NavLink>
                                 </NavItem>
+
 
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/cart">Koszyk</NavLink>
