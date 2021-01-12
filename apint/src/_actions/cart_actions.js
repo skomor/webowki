@@ -11,11 +11,14 @@ export const cartActions = {
 };
 
 function addItem(checkoutItem) {
+    history.push('/products');
+
  return ({type: cartConstants.ADD_ITEM, checkoutItem})
+
 }
 
-function _delete(id) {
-    return { type: cartConstants.REMOVE_ITEM, id }
+function _delete(product) {
+    return { type: cartConstants.REMOVE_ITEM, product }
 }
 function clear() {
     return { type: cartConstants.CLEAR }
@@ -23,12 +26,12 @@ function clear() {
 
 function checkout(checkoutItems) {
     return dispatch => {
-        dispatch(request());
+        dispatch(request(checkoutItems));
         cartService.checkout(checkoutItems)
             .then(
                 () => {
                     dispatch(success());
-                    history.push('/pay');
+
                 },
                 error => {
                     dispatch(failure(error));

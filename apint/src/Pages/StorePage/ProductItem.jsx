@@ -18,7 +18,7 @@ const ProductItem = ({product}) => {
                     <table>
                         <tr>
                             <td>Koszt/doba:</td>
-                            <td>{Math.floor(product.price / 6)} PLN</td>
+                            <td>{Math.floor(product.price*3)} PLN</td>
 
                         </tr>
                         <tr>

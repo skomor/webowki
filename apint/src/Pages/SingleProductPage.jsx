@@ -98,7 +98,7 @@ class SingleProductPage extends React.Component {
         const {id} = this.props.match.params;
 
 
-        if (this.state.dailyOrHourly === "d")
+    /*    if (this.state.dailyOrHourly === "d")
             this.setState({
                 checkoutItem: {
                     productId: id,
@@ -117,29 +117,29 @@ class SingleProductPage extends React.Component {
                     endDate: new Date(this.state.selectedDay.setHours(this.state.selectedHour[1],0,0)),
                 }
             });
-        }
-        var ok ='';
+        }*/
+        var toLocalStorage ='';
         if (this.state.dailyOrHourly === "d")
-            ok ={
-                checkoutItem: {
+            toLocalStorage ={
                     productId: id,
                     dailyOrHourly: this.state.dailyOrHourly,
                     startDate: new Date(this.state.selectionRange.startDate.setHours(0,0,0)),
                     endDate: new Date(this.state.selectionRange.endDate.setHours(0,0,0)),
-                }
+
             }
         else
         {
-            ok={
-                checkoutItem: {
+            toLocalStorage={
+
                     productId: id,
                     dailyOrHourly: this.state.dailyOrHourly,
                     startDate: new Date(this.state.selectedDay.setHours(this.state.selectedHour[0],0,0)),
                     endDate: new Date(this.state.selectedDay.setHours(this.state.selectedHour[1],0,0)),
-                }
+
             }
         }
-        this.props.dispatch(cartActions.addItem(ok));
+        this.props.dispatch(cartActions.addItem(toLocalStorage));
+
 
     }
 

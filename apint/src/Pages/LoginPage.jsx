@@ -24,7 +24,6 @@ class LoginPage extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
         this.setState({submitted: true});
         const {username, password} = this.state;
         const {dispatch} = this.props;
@@ -34,7 +33,6 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        const {loggingIn} = this.props;
         const {username, password, submitted} = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
@@ -58,8 +56,6 @@ class LoginPage extends React.Component {
                     </div>
                     <div className="form-group">
                         <button className="btn btn-primary">Login</button>
-
-
                         <Link to="/register" className="btn btn-link">Register</Link>
                     </div>
                 </form>

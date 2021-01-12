@@ -2,13 +2,27 @@ import React from 'react';
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
 import {productActions} from "../../_actions/product_action";
-
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import {cartActions} from "../../_actions/cart_actions";
+import IconButton from "@material-ui/core/IconButton";
+import {PriceCalculator} from "../../_helpersAndConstants/price.calculator";
 
 class CartItem extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.remove = this.remove.bind(this)
+    }
+
     componentDidMount() {
         if (!this.props.products.items)
             this.props.dispatch(productActions.getAll());
     }
+
+    remove(product) {
+        this.props.dispatch(cartActions.delete(product));
+    }
+
 
     render() {
 
@@ -20,6 +34,8 @@ class CartItem extends React.Component {
                 if (products.items[i].id == product.productId)
                     currProduct = products.items[i];
             }
+
+
         return (
             <div className="row no-gutters py-2">
                 <div className="col-sm-2 p-2">
@@ -34,9 +50,9 @@ class CartItem extends React.Component {
                 {currProduct &&
                 <div className="col-sm-4 p-2">
                     <h5 className="mb-1">{currProduct.name}</h5>
-                    <p className="mb-1">Price: {(currProduct.price)} </p>
-                    <p className="mb-1">StartTime: {(product.startDate)} </p>
-                    <p className="mb-1">EndTime: {(currProduct.endDate)} </p>
+                    <p className="mb-1">Price: {PriceCalculator.calculatePrice(currProduct.price,product.dailyOrHourly,new Date(product.startDate),new Date(product.endDate) )} </p>
+                    <p className="mb-1">StartTime: {new Date(product.startDate).toLocaleString()} </p>
+                    <p className="mb-1">EndTime: {new Date(product.endDate).toLocaleString()} </p>
 
                 </div>
                 }
@@ -69,6 +85,13 @@ class CartItem extends React.Component {
                 }
 
             </div>*/}
+                {
+                    currProduct &&
+                    <IconButton aria-label="delete" onClick={() => this.remove(product)}>
+                        <DeleteForeverIcon width={"20px"}/>
+                    </IconButton>
+
+                }
             </div>
         );
     }

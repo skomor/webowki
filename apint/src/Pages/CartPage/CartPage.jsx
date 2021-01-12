@@ -1,32 +1,52 @@
 import React from 'react';
 
 import CartGrid from './CartGrid';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
+import {PriceCalculator} from "../../_helpersAndConstants/price.calculator";
+import {cartActions} from "../../_actions/cart_actions";
+import PayWithPayPal from "../../_components/PayWithPayPal";
+
 
 class CartPage extends React.Component {
 
-render() {
-    const Sum = (cartItems, products) => {
-        let sum = 0;
-        for(let i = 0; i < products.length; i++){
-            for (let j = 0; j < cartItems.length; j++) {
-                if(products[i].id==cartItems[j].productId){
-                    sum += products[i].price;
+    state = {
+        total: 0.00,
+        checkoutList: [],
+        isCheckout: false
+    }
 
-                }
 
-            }
 
-        };
-        return sum;
-    };
-    const {CartReducer, checkout} = this.props;
+    handleCheckout = (checkoutItems) => {
+        this.setState({isCheckout: true})
+        this.props.dispatch(cartActions.checkout(checkoutItems));
 
-    const {products} = this.props;
-    return (
-            <div >
+    }
+    clearCart = () => {
+        this.props.dispatch(cartActions.clear());
+
+    }
+
+    render() {
+        const {CartReducer} = this.props;
+        const {products} = this.props;
+        const {isCheckout} = this.state
+
+        var total = PriceCalculator.calculateSumPrice(CartReducer.checkoutItems, products)
+        if (isCheckout) {
+            return (
+                <PayWithPayPal
+                    total={total}
+                    cartItems={CartReducer.checkoutItems}
+                    products={products}
+                />
+            )
+        }
+
+        return (
+            <div className={"content"}>
                 <div className="text-center mt-5">
                     <h1>Cart</h1>
                     <p>This is the Cart Page.</p>
@@ -35,48 +55,54 @@ render() {
                 <div className="row no-gutters justify-content-center">
                     <div className="col-sm-9 p-3">
                         {
-                            CartReducer.checkoutItems &&
-                                <CartGrid/> /*:
+                            CartReducer.checkoutItems.length > 0 ?
+                                <CartGrid/> :
                                 <div className="p-3 text-center text-muted">
                                     Your cart is empty
-                                </div>*/
+                                </div>
                         }
 
-                       { CartReducer.checkoutItems &&
+                        {CartReducer.checkoutItems &&
                         <div className="p-3 text-center text-success">
                             <p>Checkout successfull</p>
                             <Link to="/" className="btn btn-outline-success btn-sm">BUY MORE</Link>
                         </div>
                         }
+
                     </div>
-                  {/*{
-                      checkoutItems.length > 0 &&
+                    {
+                        CartReducer.checkoutItems.length > 0 &&
                         <div className="col-sm-3 p-3">
                             <div className="card card-body">
 
                                 <p className="mb-1">Total Payment</p>
-                                <h3 className="m-0 txt-right">{Sum(checkoutItems,products)}</h3>
+                                <h3 className="m-0 txt-right">{total}</h3>
                                 <hr className="my-4"/>
                                 <div className="text-center">
-                                    <button type="button" className="btn btn-primary mb-2" onClick={handleCheckout}>CHECKOUT</button>
-                                    <button type="button" className="btn btn-outlineprimary btn-sm" onClick={clearCart}>CLEAR</button>
+                                    <button type="button" className="btn btn-primary mb-2"
+                                            onClick={this.handleCheckout(CartReducer.checkoutItems,this.props.user.userId)}>CHECKOUT
+                                    </button>
+                                    <button type="button" className="btn btn-outlineprimary btn-sm"
+                                            onClick={this.clearCart}>CLEAR
+                                    </button>
                                 </div>
 
                             </div>
                         </div>
-                    }*/}
-
+                    }
                 </div>
             </div>
-    );
+        );
+    }
 }
-}
+
 function mapStateToProps(state) {
-    const {products,CartReducer, checkout} = state;
+    const {products, CartReducer, checkout} = state;
     return {
         CartReducer,
         products,
         checkout
     };
 }
+
 export default withRouter(connect(mapStateToProps)(CartPage));

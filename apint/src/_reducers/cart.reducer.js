@@ -11,21 +11,16 @@ export function CartReducer (state= initialState, action){
     }
     switch (action.type) {
         case cartConstants.ADD_ITEM:
-
-            state.checkoutItems.push(
-               action.checkoutItem
-            )
+            state.checkoutItems.push(action.checkoutItem);
             Storage(state.checkoutItems)
 
             return {
-
                 checkoutItems: [...state.checkoutItems]
             }
         case cartConstants.REMOVE_ITEM:
-            Storage([...state.checkoutItems.filter(item => item.id !== action.id)]);
-
+            Storage([...state.checkoutItems.filter(item => item != action.product)]);
             return {
-                checkoutItems: [...state.checkoutItems.filter(item => item.id !== action.id)]
+                checkoutItems: [...state.checkoutItems.filter(item => item != action.product)]
             }
         case cartConstants.CLEAR:
             Storage([]);

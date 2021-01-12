@@ -6,11 +6,11 @@ export const cartService = {
 
 };
 
-function checkout(username, password) {
+function checkout(checkoutItems,User) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify()
     };
 
     return fetch(config.apiUrl + '/users/authenticate', requestOptions)
