@@ -8,7 +8,8 @@ export const cartActions = {
     addItem,
     delete: _delete,
     checkout,
-    clear
+    clear,
+    getRentedByUserId
 };
 
 function addItem(checkoutItem) {
@@ -24,8 +25,27 @@ function _delete(product) {
 function clear() {
     return { type: cartConstants.CLEAR }
 }
+function getRentedByUserId(userId) {
 
-function checkout(checkoutItems) {
+    return dispatch => {
+        dispatch(request());
+
+        cartService.getRentedByUserId(userId).then(
+            (rentedItems) => {
+                dispatch(success(rentedItems));
+            },
+            error => {
+                dispatch(failure(error));
+                dispatch(alertActions.error(error));
+            }
+        );
+    };
+    function request() { return { type: cartConstants.GET_RENTED_BY_USER_ID_REQUEST } }
+    function success(rentedItems) { return { type: cartConstants.GET_RENTED_BY_USER_ID_SUCCES, rentedItems } }
+    function failure(error) { return { type: cartConstants.GET_RENTED_BY_USER_ID_FAILURE, error } }
+}
+
+function checkout(checkoutItems,date) {
 
 
 
@@ -34,7 +54,7 @@ function checkout(checkoutItems) {
 
             cartService.checkout(checkoutItems).then(
                 () => {
-                    dispatch(success());
+                    dispatch(success(date));
                 },
                 error => {
                     dispatch(failure(error));
@@ -46,7 +66,7 @@ function checkout(checkoutItems) {
     };
 
     function request() { return { type: cartConstants.CHECKOUT_REQUEST } }
-    function success(checkoutItems) { return { type: cartConstants.CHECKOUT_SUCCES, checkoutItems } }
+    function success(date) { return { type: cartConstants.CHECKOUT_SUCCES, date } }
     function failure(error) { return { type: cartConstants.CHECKOUT_FAILURE, error } }
 }
 

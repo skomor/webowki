@@ -4,7 +4,7 @@ import _ from "lodash";
 
 export const cartService = {
     checkout,
-
+    getRentedByUserId
 };
 let user = JSON.parse(localStorage.getItem('user'));
 
@@ -18,22 +18,22 @@ function checkout(checkoutItems) {
     
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers:  { 'Content-Type': 'application/json' ,...authHeader()},
         body: JSON.stringify(result)
     };
     return fetch(config.apiUrl + '/api/productRentals', requestOptions)
         .then(handleResponse, handleError);
 
 
-   /*  fetch(config.apiUrl + '/users/authenticate', requestOptions)
-        .then(handleResponse, handleError)
-        .then(user => {
-            if (user && user.token) {
-                localStorage.setItem('user', JSON.stringify(user));
-            }
+}
 
-            return user;
-        });*/
+function getRentedByUserId(userId) {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' ,...authHeader()},
+    };
+    return fetch(config.apiUrl + `/api/productRentals/${userId}`, requestOptions)
+        .then(handleResponse, handleError);
 }
 
 

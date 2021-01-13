@@ -25,6 +25,7 @@ export function CartReducer (state= initialState, action){
         case cartConstants.CLEAR:
             Storage([]);
             return {
+                date: state.date ? state.date : null,
                 checkoutItems: []
             }
         case cartConstants.CHECKOUT_REQUEST:
@@ -36,7 +37,29 @@ export function CartReducer (state= initialState, action){
         case cartConstants.CHECKOUT_SUCCES:
             return {
                 checkout: false,
-                checkoutItems: []
+                date: action.date,
+                checkoutItems: [...state.checkoutItems]
+            }
+        case cartConstants.GET_RENTED_BY_USER_ID_SUCCES:
+            return {
+                checkout: state.checkout,
+                date: state.date,
+                checkoutItems: [...state.checkoutItems],
+                rentedItems: action.rentedItems
+            }
+        case cartConstants.GET_RENTED_BY_USER_ID_FAILURE:
+            return {
+                checkout: state.checkout,
+                date: state.date,
+                checkoutItems: [...state.checkoutItems],
+                rentedItems: []
+            }
+        case cartConstants.GET_RENTED_BY_USER_ID_REQUEST:
+            return {
+                checkout: state.checkout,
+                date: state.date,
+                checkoutItems: [...state.checkoutItems],
+                rentedItems: []
             }
 
         default:

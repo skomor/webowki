@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BackDoAPIN.Entities;
 using BackDoAPIN.Helpers;
+using BackDoAPIN.Services;
 
 namespace BackDoAPIN.Controllers
 {
@@ -15,30 +16,28 @@ namespace BackDoAPIN.Controllers
     [ApiController]
     public class ProductRentalsController : ControllerBase
     {
-        private readonly DataContext _context;
+        private IRentalService _rentalService;
 
-        public ProductRentalsController(DataContext context)
+
+        public ProductRentalsController(DataContext context,IRentalService rentalService)
         {
-            _context = context;
+            _rentalService = rentalService;
+
         }
 
         // GET: api/ProductRentals
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductRental>>> GetProductRental()
         {
-            return await _context.ProductRental.ToListAsync();
+            return  await _rentalService.GetAll();
         }
 
         // GET: api/ProductRentals/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ProductRental>> GetProductRental(int id)
+        [HttpGet("{userId}")]
+        public  Task<List<ProductRental>> GetProductRental(int userId)
         {
-            var productRental = await _context.ProductRental.FindAsync(id);
-
-            if (productRental == null)
-            {
-                return NotFound();
-            }
+            var productRental =  _rentalService.GetByUserId(userId);
+            
 
             return productRental;
         }
@@ -48,29 +47,11 @@ namespace BackDoAPIN.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProductRental(int id, ProductRental productRental)
         {
-            if (id != productRental.Id)
+            bool outcome = await _rentalService.Update(id, productRental);
+            if (!outcome)
             {
                 return BadRequest();
             }
-
-            _context.Entry(productRental).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductRentalExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
             return NoContent();
         }
 
@@ -79,23 +60,8 @@ namespace BackDoAPIN.Controllers
         [HttpPost]
         public async Task<ActionResult<ProductRental>> PostProductRental(List<RentalDto> rentalDto)
         {
-            
-            List<ProductRental> productRental = new List<ProductRental>();
-            
-            foreach (var dto in rentalDto){
-                var product = new ProductRental();
-                product.ProductId = dto.ProductId;
-                product.UserId = dto.UserId;
-                product.StartTime = dto.StartDate;
-                product.EndTime = dto.EndDate;
-                product.RentalTime = new DateTime();
-                productRental.Add(product);
-              
 
-            }
-            _context.ProductRental.AddRange(productRental);
-            await _context.SaveChangesAsync();
-           
+            var productRental = await _rentalService.CreateRange(rentalDto);
             
      
             return CreatedAtAction("GetProductRental",  productRental);
@@ -105,22 +71,15 @@ namespace BackDoAPIN.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProductRental(int id)
         {
-            var productRental = await _context.ProductRental.FindAsync(id);
-            if (productRental == null)
+            var outcome = await _rentalService.Delete(id);
+            if (!outcome) 
             {
                 return NotFound();
             }
-
-            _context.ProductRental.Remove(productRental);
-            await _context.SaveChangesAsync();
-
             return NoContent();
         }
 
-        private bool ProductRentalExists(int id)
-        {
-            return _context.ProductRental.Any(e => e.Id == id);
-        }
+   
     }
     
     

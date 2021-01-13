@@ -8,6 +8,13 @@ export class PriceCalculator {
             return Math.floor(DateCalculator.calculateNrOfDays(new Date(startDate),new Date(endDate))*price*3);
         }
     }
+    static  calculatePrice1 = (price,  startDate, endDate) => {
+        if(!(new Date(startDate).getMinutes() === 0 && new Date(startDate).getHours() === 23 && new Date(startDate).getSeconds() === 0)){
+            return  Math.floor(DateCalculator.calculateHours(new Date(startDate),new Date(endDate))*price);
+        }else{
+            return Math.floor(DateCalculator.calculateNrOfDays(new Date(startDate),new Date(endDate))*price*3);
+        }
+    }
     static   calculateSumPrice = (cartItems, products) => {
         var Price = 0
         if (products.items !== undefined && cartItems !== undefined)
