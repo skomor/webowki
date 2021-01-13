@@ -2,6 +2,7 @@ import { userConstants } from '../_helpersAndConstants/user.constants';
 import { userService } from '../_services/user.service';
 import { alertActions } from './alerts_actions';
 import {history}  from '../_helpersAndConstants/history';
+import {cartActions} from "./cart_actions";
 
 export const userActions = {
     login,
@@ -19,7 +20,8 @@ function login(username, password) {
             .then(
                 user => {
                     dispatch(success(user));
-                    history.push('/Home');
+                    dispatch(cartActions.clear());
+                    history.push('/Start');
                 },
                 error => {
                     dispatch(failure(error));
