@@ -1,8 +1,8 @@
 import React from 'react';
 import {Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink,} from 'reactstrap';
 import {Link} from 'react-router-dom';
-import '../NavBarCustom.css';
-import {userActions} from "../_actions/user_actions";
+import '../../NavBarCustom.css';
+import {userActions} from "../../_actions/user_actions";
 import {connect} from "react-redux";
 
 
@@ -39,7 +39,7 @@ class NavBarCustom extends React.Component {
                     className="navbar-expand-sm navbar-toggleable-sm ng-dark border-bottom box-shadow mb-3 navbar-light bg-light "
                     light>
                     <Container>
-                        <NavbarBrand tag={Link} to="/Home" >Wypożyczalnia JANE AHONENE</NavbarBrand>
+                        <NavbarBrand tag={Link} to="/Start" >Wypożyczalnia JANE AHONENE</NavbarBrand>
                         <NavbarToggler onClick={this.toggleNavbar} className="mr-2"/>
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed}
                                   navbar>
@@ -64,7 +64,7 @@ class NavBarCustom extends React.Component {
 
 
                                 <NavItem>
-                                    <NavLink tag={Link} to="/cart">Koszyk</NavLink>
+                                    <NavLink tag={Link} to="/cart">Koszyk ({this.props.CartReducer && this.props.CartReducer.checkoutItems ? this.props.CartReducer.checkoutItems.length : 0})</NavLink>
                                 </NavItem>
 
                                 <NavItem>
@@ -82,9 +82,11 @@ class NavBarCustom extends React.Component {
 }
 function mapStateToProps(state) {
     const { loggingIn , loggedIn } = state.authentication;
+    const {CartReducer } = state;
     return {
         loggingIn,
-        loggedIn
+        loggedIn,
+        CartReducer
     };
 }
 export default connect(mapStateToProps)(NavBarCustom);

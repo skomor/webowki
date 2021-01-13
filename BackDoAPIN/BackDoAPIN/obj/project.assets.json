@@ -7777,25 +7777,34 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Maciek\\.nuget\\packages\\": {}
+    "C:\\Users\\skomo\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SEMESTR VII\\AI\\Nowy folder\\webowki\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj",
+      "projectUniqueName": "E:\\_Semestr 7\\_AI2\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj",
       "projectName": "BackDoAPIN",
-      "projectPath": "F:\\SEMESTR VII\\AI\\Nowy folder\\webowki\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj",
-      "packagesPath": "C:\\Users\\Maciek\\.nuget\\packages\\",
-      "outputPath": "F:\\SEMESTR VII\\AI\\Nowy folder\\webowki\\BackDoAPIN\\BackDoAPIN\\obj\\",
+      "projectPath": "E:\\_Semestr 7\\_AI2\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj",
+      "packagesPath": "C:\\Users\\skomo\\.nuget\\packages\\",
+      "outputPath": "E:\\_Semestr 7\\_AI2\\BackDoAPIN\\BackDoAPIN\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Maciek\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\skomo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress .NET Core Desktop 19.2.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0"
+        "netcoreapp5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\DevExpress 19.2\\.NET Core Desktop Libraries\\System\\Components\\Packages": {},
+        "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },

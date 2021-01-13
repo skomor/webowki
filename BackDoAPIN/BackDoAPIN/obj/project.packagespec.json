@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "E:\\_Semestr 7\\_AI\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj",
+    "projectUniqueName": "E:\\_Semestr 7\\_AI2\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj",
     "projectName": "BackDoAPIN",
-    "projectPath": "E:\\_Semestr 7\\_AI\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj",
-    "outputPath": "E:\\_Semestr 7\\_AI\\BackDoAPIN\\BackDoAPIN\\obj\\",
+    "projectPath": "E:\\_Semestr 7\\_AI2\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj",
+    "outputPath": "E:\\_Semestr 7\\_AI2\\BackDoAPIN\\BackDoAPIN\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Microsoft\\Xamarin\\NuGet"

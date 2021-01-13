@@ -7,8 +7,8 @@ import {alertActions} from '../_actions/alerts_actions';
 import MainPage from '../Pages/MainPage';
 import LoginPage from '../Pages/LoginPage';
 import RegisterPage from '../Pages/RegisterPage';
-import {PrivateRoute} from "../_components/PrivateRoute";
-import {Layout} from "../_components/Layout";
+import {PrivateRoute} from "../Pages/_components/PrivateRoute";
+import {Layout} from "../Pages/_components/Layout";
 import {Redirect} from "react-router";
 import PricesPage from "../Pages/PricesPage";
 import AboutPage from "../Pages/AboutPage";
@@ -42,15 +42,15 @@ class App extends React.Component {
                                 <div className={`alert ${alert.type}`}>{alert.message}</div>
                                 }
                                 <div>
-                                    <Redirect from='' to='/Home' exact />
+                                    <Redirect from='' to='/Start' exact />
 
                                     <PrivateRoute path="/Home" component={(MainPage)}/>
                                     <Route path="/login" component={(LoginPage)}/>
                                     <Route path="/register" component={(RegisterPage)}/>
                                     <Route path="/cennik" component={PricesPage}/>
                                     <Route path="/about" component={AboutPage}/>
-                                    <Route exact  path="/products" component={StorePage}/>
-                                    <Route exact  path="/cart" component={CartPage}/>
+                                    <PrivateRoute exact  path="/products" component={StorePage}/>
+                                    <PrivateRoute exact  path="/cart" component={CartPage}/>
                                     <Route exact  path="/start" component={StartPage}/>
                                     <PrivateRoute path="/products/:id" component={() => <SingleProductPage />}/>
                                 </div>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { ListGroup, ListGroupItem } from 'reactstrap'
-import {PriceCalculator} from "../_helpersAndConstants/price.calculator";
-import CalendarAdder from "../_components/CalendarAdder"
+import {PriceCalculator} from "../../_helpersAndConstants/price.calculator";
+import CalendarAdder from "./CalendarAdder"
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
-import {cartActions} from "../_actions/cart_actions";
-import {cartService} from "../_services/cart.service";
+import {cartActions} from "../../_actions/cart_actions";
+import {cartService} from "../../_services/cart.service";
 
 function PayWithPayPal (props) {
     const { cartItems, total ,products} = props
@@ -95,7 +95,7 @@ function PayWithPayPal (props) {
     )
 }
 function mapStateToProps(state) {
-    const {CartReducer, } = state;
+    const {CartReducer } = state;
     return {
         CartReducer,
 

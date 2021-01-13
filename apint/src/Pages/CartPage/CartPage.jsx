@@ -6,7 +6,7 @@ import {withRouter} from "react-router";
 import {connect} from "react-redux";
 import {PriceCalculator} from "../../_helpersAndConstants/price.calculator";
 import {cartActions} from "../../_actions/cart_actions";
-import PayWithPayPal from "../../_components/PayWithPayPal";
+import PayWithPayPal from "../_components/PayWithPayPal";
 
 
 class CartPage extends React.Component {

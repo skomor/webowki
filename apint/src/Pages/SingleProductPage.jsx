@@ -203,7 +203,7 @@ class SingleProductPage extends React.Component {
                             </tr>
                             <tr>
                                 <td>Cena rynkowa:</td>
-                                <td>{products.items[selectedProductIndex].retailprice} [zł]</td>
+                                <td>{products.items[selectedProductIndex].retailPrice} [zł]</td>
                             </tr>
                             <tr>
                                 <td>Płeć użytkownika:</td>
@@ -211,7 +211,7 @@ class SingleProductPage extends React.Component {
                             </tr>
                             <tr>
                                 <td>Koszt/doba:</td>
-                                <td>{Math.floor(products.price*3)} PLN</td>
+                                <td>{Math.floor(products.items[selectedProductIndex].price*3)} PLN</td>
 
                             </tr>
                             <tr>
