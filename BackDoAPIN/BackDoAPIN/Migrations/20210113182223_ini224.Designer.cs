@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackDoAPIN.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210113073853_ini1")]
-    partial class ini1
+    [Migration("20210113182223_ini224")]
+    partial class ini224
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,34 +20,6 @@ namespace BackDoAPIN.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
-
-            modelBuilder.Entity("BackDoAPIN.Entities.CartItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RentalId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("RentalId");
-
-                    b.ToTable("CartItem");
-                });
 
             modelBuilder.Entity("BackDoAPIN.Entities.Product", b =>
                 {
@@ -88,14 +60,23 @@ namespace BackDoAPIN.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("BackDoAPIN.Entities.Rental", b =>
+            modelBuilder.Entity("BackDoAPIN.Entities.ProductRental", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime>("DealTime")
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("RentalTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -103,9 +84,11 @@ namespace BackDoAPIN.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("Rental");
+                    b.ToTable("ProductRental");
                 });
 
             modelBuilder.Entity("BackDoAPIN.Entities.User", b =>
@@ -135,7 +118,7 @@ namespace BackDoAPIN.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("BackDoAPIN.Entities.CartItem", b =>
+            modelBuilder.Entity("BackDoAPIN.Entities.ProductRental", b =>
                 {
                     b.HasOne("BackDoAPIN.Entities.Product", "Product")
                         .WithMany()
@@ -143,31 +126,15 @@ namespace BackDoAPIN.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BackDoAPIN.Entities.Rental", "Rental")
-                        .WithMany("CartItems")
-                        .HasForeignKey("RentalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Rental");
-                });
-
-            modelBuilder.Entity("BackDoAPIN.Entities.Rental", b =>
-                {
                     b.HasOne("BackDoAPIN.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
-                });
+                    b.Navigation("Product");
 
-            modelBuilder.Entity("BackDoAPIN.Entities.Rental", b =>
-                {
-                    b.Navigation("CartItems");
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

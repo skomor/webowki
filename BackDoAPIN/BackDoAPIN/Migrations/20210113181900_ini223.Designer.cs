@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackDoAPIN.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210112235527_ini0")]
-    partial class ini0
+    [Migration("20210113181900_ini223")]
+    partial class ini223
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -55,3 +55,12 @@
 .centerText{
     text-align: center;
 }
+.cartObject2{
+    text-decoration: none;
+    background-color: white;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 1px skyblue;
+    color: black;
+}
