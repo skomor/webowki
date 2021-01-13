@@ -36,40 +36,39 @@ class NavBarCustom extends React.Component {
         return (
             <header className="sticky-top">
                 <Navbar
-                    className="navbar-expand-sm navbar-toggleable-sm ng-dark border-bottom box-shadow mb-3 navbar-dark bg-light "
+                    className="navbar-expand-sm navbar-toggleable-sm ng-dark border-bottom box-shadow mb-3 navbar-light bg-light "
                     light>
                     <Container>
-                        <NavbarBrand tag={Link} to="/Home" className="text-dark">Wypożyczalnia sprzętu narciarskiego
-                            JANE AHONENE</NavbarBrand>
+                        <NavbarBrand tag={Link} to="/Home" >Wypożyczalnia JANE AHONENE</NavbarBrand>
                         <NavbarToggler onClick={this.toggleNavbar} className="mr-2"/>
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed}
                                   navbar>
                             <ul className="navbar-nav flex-grow">
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/start">Start</NavLink>
+                                    <NavLink tag={Link}  to="/start">Start</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/Home">Home</NavLink>
-                                </NavItem>
-
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/cennik">Cennik</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/about">O nas</NavLink>
+                                    <NavLink tag={Link} to="/Home">Home</NavLink>
                                 </NavItem>
 
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/products">Rezerwuj</NavLink>
+                                    <NavLink tag={Link}  to="/cennik">Cennik</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} to="/about">O nas</NavLink>
+                                </NavItem>
+
+                                <NavItem>
+                                    <NavLink tag={Link}  to="/products">Rezerwuj</NavLink>
                                 </NavItem>
 
 
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/cart">Koszyk</NavLink>
+                                    <NavLink tag={Link} to="/cart">Koszyk</NavLink>
                                 </NavItem>
 
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark"
+                                    <NavLink tag={Link} 
                                              to="/Login">{this.props.loggedIn ? "Wyloguj" : "Zaloguj"}</NavLink>
                                 </NavItem>
                                 <NavbarToggler onClick={this.toggleNavbar} className="mr-2"/>
