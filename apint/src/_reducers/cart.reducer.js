@@ -40,6 +40,27 @@ export function CartReducer (state= initialState, action){
                 date: action.date,
                 checkoutItems: [...state.checkoutItems]
             }
+        case cartConstants.GET_RENTED_BY_USER_ID_SUCCES:
+            return {
+                checkout: state.checkout,
+                date: state.date,
+                checkoutItems: [...state.checkoutItems],
+                rentedItems: action.rentedItems
+            }
+        case cartConstants.GET_RENTED_BY_USER_ID_FAILURE:
+            return {
+                checkout: state.checkout,
+                date: state.date,
+                checkoutItems: [...state.checkoutItems],
+                rentedItems: []
+            }
+        case cartConstants.GET_RENTED_BY_USER_ID_REQUEST:
+            return {
+                checkout: state.checkout,
+                date: state.date,
+                checkoutItems: [...state.checkoutItems],
+                rentedItems: []
+            }
 
         default:
             return state

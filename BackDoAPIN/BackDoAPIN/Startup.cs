@@ -63,6 +63,8 @@ namespace BackDoAPIN
             });
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRentalService, RentalService>();
+            services.AddScoped<IProductService, ProductService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
