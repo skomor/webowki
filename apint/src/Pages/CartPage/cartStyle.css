@@ -1,0 +1,32 @@
+.titleProductSite{    
+    margin-bottom: 10px;
+}
+
+a
+{
+    text-decoration: none !important;
+}
+a:hoover
+{
+    text-decoration: none !important;
+}
+
+.cartObject{
+    text-decoration: none;
+    background-color: white;
+    padding: 10px;
+    margin: 7px;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 1px skyblue;
+    color: black;
+}
+.productLink img{
+    border-radius: 10px;
+}
+
+
+
+
+.bold{
+    font-weight:bold;
+}
