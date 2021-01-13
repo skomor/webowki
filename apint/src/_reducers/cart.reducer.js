@@ -25,6 +25,7 @@ export function CartReducer (state= initialState, action){
         case cartConstants.CLEAR:
             Storage([]);
             return {
+                date: state.date ? state.date : null,
                 checkoutItems: []
             }
         case cartConstants.CHECKOUT_REQUEST:
@@ -36,7 +37,8 @@ export function CartReducer (state= initialState, action){
         case cartConstants.CHECKOUT_SUCCES:
             return {
                 checkout: false,
-                checkoutItems: []
+                date: action.date,
+                checkoutItems: [...state.checkoutItems]
             }
 
         default:

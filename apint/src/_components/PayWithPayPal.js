@@ -2,6 +2,10 @@ import React, { useState, useEffect, useRef } from 'react'
 import { ListGroup, ListGroupItem } from 'reactstrap'
 import {PriceCalculator} from "../_helpersAndConstants/price.calculator";
 import CalendarAdder from "../_components/CalendarAdder"
+import {withRouter} from "react-router";
+import {connect} from "react-redux";
+import {cartActions} from "../_actions/cart_actions";
+import {cartService} from "../_services/cart.service";
 
 function PayWithPayPal (props) {
     const { cartItems, total ,products} = props
@@ -26,6 +30,8 @@ function PayWithPayPal (props) {
                 onApprove: async (data, actions) => {
                     const order = await actions.order.capture();
                     setPaidFor(true);
+                    props.dispatch(cartActions.clear());
+
                     console.log('ORDER', order);
                 },
                 onError: err => {
@@ -37,6 +43,7 @@ function PayWithPayPal (props) {
     }, [cartItems]);
 
     if (paidFor) {
+        var date=props.CartReducer.date;
         return (
             <div class="content">
                 <div>
@@ -46,7 +53,7 @@ function PayWithPayPal (props) {
                 </div>
 
                 <br/>
-                <CalendarAdder startTime={cartItems[0].startDate} endTime={cartItems[0].endDate}/>
+                <CalendarAdder startTime={date} endTime={date}/>
             </div>
         )
     }
@@ -87,5 +94,12 @@ function PayWithPayPal (props) {
         </div>
     )
 }
+function mapStateToProps(state) {
+    const {CartReducer, } = state;
+    return {
+        CartReducer,
 
-export default PayWithPayPal
+    };
+}
+
+export default connect( mapStateToProps)(PayWithPayPal)

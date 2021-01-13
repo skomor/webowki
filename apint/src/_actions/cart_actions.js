@@ -25,7 +25,7 @@ function clear() {
     return { type: cartConstants.CLEAR }
 }
 
-function checkout(checkoutItems) {
+function checkout(checkoutItems,date) {
 
 
 
@@ -34,7 +34,7 @@ function checkout(checkoutItems) {
 
             cartService.checkout(checkoutItems).then(
                 () => {
-                    dispatch(success());
+                    dispatch(success(date));
                 },
                 error => {
                     dispatch(failure(error));
@@ -46,7 +46,7 @@ function checkout(checkoutItems) {
     };
 
     function request() { return { type: cartConstants.CHECKOUT_REQUEST } }
-    function success(checkoutItems) { return { type: cartConstants.CHECKOUT_SUCCES, checkoutItems } }
+    function success(date) { return { type: cartConstants.CHECKOUT_SUCCES, date } }
     function failure(error) { return { type: cartConstants.CHECKOUT_FAILURE, error } }
 }
 
