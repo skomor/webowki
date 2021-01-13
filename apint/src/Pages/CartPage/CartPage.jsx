@@ -21,7 +21,8 @@ class CartPage extends React.Component {
 
     handleCheckout = (checkoutItems) => {
         this.setState({isCheckout: true})
-       // this.props.dispatch(cartActions.checkout(checkoutItems));
+        const {userId} = this.props;
+        this.props.dispatch(cartActions.checkout(checkoutItems));
 
     }
     clearCart = () => {

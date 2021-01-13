@@ -2,6 +2,7 @@ import { cartConstants } from '../_helpersAndConstants/cart.constants';
 import { cartService } from '../_services/cart.service';
 import { alertActions } from './alerts_actions';
 import {history}  from '../_helpersAndConstants/history';
+import _ from 'lodash'
 
 export const cartActions = {
     addItem,
@@ -25,10 +26,13 @@ function clear() {
 }
 
 function checkout(checkoutItems) {
+
+
+
     return dispatch => {
         dispatch(request());
-        for (const item in checkoutItems) {
-            cartService.checkout(item).then(
+
+            cartService.checkout(checkoutItems).then(
                 () => {
                     dispatch(success());
                 },
@@ -37,7 +41,7 @@ function checkout(checkoutItems) {
                     dispatch(alertActions.error(error));
                 }
             );
-        }
+
 
     };
 

@@ -12,9 +12,9 @@ namespace BackDoAPIN.Helpers
 
         public DbSet<BackDoAPIN.Entities.Product> Product { get; set; }
 
-        public DbSet<BackDoAPIN.Entities.Rental> Rental { get; set; }
+        public DbSet<BackDoAPIN.Entities.ProductRental> ProductRental { get; set; }
 
-        public DbSet<BackDoAPIN.Entities.CartItem> CartItem { get; set; }
+
       //  public DbSet<Product> Products { get; set; }
 
   

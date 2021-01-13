@@ -1,28 +1,28 @@
 import {authHeader} from '../_helpersAndConstants/auth-header';
 import {config} from '../_helpersAndConstants/config';
+import _ from "lodash";
 
 export const cartService = {
     checkout,
 
 };
+let user = JSON.parse(localStorage.getItem('user'));
 
-function checkout(item) {
+function checkout(checkoutItems) {
+
+
+    var result = checkoutItems.map(function(o) {
+        o.userId = user.id;
+        return o;
+    })
+    
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(localStorage.getItem('user').id)
+        body: JSON.stringify(result)
     };
-    const requestOptionsForItems = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: item
-    };
-
-    return fetch(config.apiUrl + '/api/rentals', requestOptions)
-        .then(handleResponse, handleError).then(
-
-        )
-
+    return fetch(config.apiUrl + '/api/productRentals', requestOptions)
+        .then(handleResponse, handleError);
 
 
    /*  fetch(config.apiUrl + '/users/authenticate', requestOptions)
