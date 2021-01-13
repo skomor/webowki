@@ -11,15 +11,12 @@ class StorePage extends React.Component {
     }
 
     render() {
-        const {products} = this.props;
         return (
-
             <div>
-                <div className="text-center mt-5">
-                    <h1>Store</h1>
-                    <p>This is the Store Page.</p>
+                <div className="text-center mb-5 bold">
+                    <h1>Wypożyczalnia</h1>
+                    <p>Dostępny sprzęt do wypożyczenia</p>
                 </div>
-
                 <ProductsGrid />
             </div>
         );

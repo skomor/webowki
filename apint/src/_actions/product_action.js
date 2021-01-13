@@ -19,7 +19,6 @@ function getById(id){
             .then(
                 user => {
                     dispatch(success(user));
-                    //history.push('/Home');
                 },
                 error => {
                     dispatch(failure(error));
