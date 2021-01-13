@@ -48,10 +48,10 @@ class CartPage extends React.Component {
 
         return (
             <div className={"content"}>
-                <div className="text-center mt-5">
-                    <h1>Cart</h1>
-                    <p>This is the Cart Page.</p>
-                </div>
+                <header className="text-center mt-5">
+                    <h1>Koszyk</h1>
+
+                </header>
 
                 <div className="row no-gutters justify-content-center">
                     <div className="col-sm-9 p-3">
@@ -59,14 +59,14 @@ class CartPage extends React.Component {
                             CartReducer.checkoutItems.length > 0 ?
                                 <CartGrid/> :
                                 <div className="p-3 text-center text-muted">
-                                    Your cart is empty
+                                    Twój koszyk jest pusty
                                 </div>
                         }
 
                         {CartReducer.checkoutItems &&
                         <div className="p-3 text-center text-success">
-                            <p>Checkout successfull</p>
-                            <Link to="/" className="btn btn-outline-success btn-sm">BUY MORE</Link>
+
+                            <Link to="/" className="btn btn-outline-success btn-sm">Kontynuuj zakupy</Link>
                         </div>
                         }
 
@@ -76,15 +76,15 @@ class CartPage extends React.Component {
                         <div className="col-sm-3 p-3">
                             <div className="card card-body">
 
-                                <p className="mb-1">Total Payment</p>
-                                <h3 className="m-0 txt-right">{total}</h3>
+                                <p className="mb-1">Całość</p>
+                                <h3 className="m-0 txt-right">{total} ZŁ</h3>
                                 <hr className="my-4"/>
                                 <div className="text-center">
                                     <button type="button" className="btn btn-primary mb-2"
-                                            onClick={() => {this.handleCheckout(CartReducer.checkoutItems)}}>CHECKOUT
+                                            onClick={() => {this.handleCheckout(CartReducer.checkoutItems)}}>ZAPŁAĆ
                                     </button>
                                     <button type="button" className="btn btn-outlineprimary btn-sm"
-                                            onClick={this.clearCart}>CLEAR
+                                            onClick={this.clearCart}>WYCZYŚĆ
                                     </button>
                                 </div>
 

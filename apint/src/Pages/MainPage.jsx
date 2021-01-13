@@ -17,7 +17,7 @@ class MainPage extends React.Component {
     render() {
         const {user, users} = this.props;
         return (
-            <div className="col-md-6 col-md-offset-3">
+            <div className="col-sm-12 content">
                 {user ? <div>
                         <h1>Hi {user.firstName}!</h1>
                         <p>Jesteś adminem</p>
@@ -40,7 +40,9 @@ class MainPage extends React.Component {
                         </ul>
                         }
                         <p>
-                            <Link to="/login">Wyloguj</Link>
+                            <Link to="/login">
+                                <div id="logOutBtn">Wyloguj</div>
+                            </Link>
                         </p>
                     </div>
                     :

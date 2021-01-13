@@ -6,6 +6,8 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import {cartActions} from "../../_actions/cart_actions";
 import IconButton from "@material-ui/core/IconButton";
 import {PriceCalculator} from "../../_helpersAndConstants/price.calculator";
+import './cartStyle.css';
+
 
 class CartItem extends React.Component {
 
@@ -37,7 +39,7 @@ class CartItem extends React.Component {
 
 
         return (
-            <div className="row no-gutters py-2">
+            <div className="row no-gutters py-2 cartObject">
                 <div className="col-sm-2 p-2">
                     {currProduct &&
                     <img
@@ -48,7 +50,7 @@ class CartItem extends React.Component {
 
 
                 {currProduct &&
-                <div className="col-sm-4 p-2">
+                <div className="col-sm-10 p-2">
                     <h5 className="mb-1">{currProduct.name}</h5>
                     <p className="mb-1">Price: {PriceCalculator.calculatePrice(currProduct.price,product.dailyOrHourly,new Date(product.startDate),new Date(product.endDate) )} </p>
                     <p className="mb-1">StartTime: {new Date(product.startDate).toLocaleString()} </p>

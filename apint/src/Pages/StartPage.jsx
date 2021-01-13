@@ -7,17 +7,17 @@ class StartPage extends React.Component {
 
     render() {
         return (
-            <div class="col-sm-12 content"> 
+            <div class="col-sm-12 content">
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img class="d-block w-100" src={stok3} alt="First slide"/>
                         </div>
                         <div class="carousel-item">
-                                <img class="d-block w-100" src={stok} alt="Second slide"/>
+                            <img class="d-block w-100" src={stok} alt="Second slide"/>
                         </div>
                         <div class="carousel-item">
-                                    <img class="d-block w-100" src={stok3} alt="Third slide"/>
+                            <img class="d-block w-100" src={stok3} alt="Third slide"/>
                         </div>
                     </div>
                 </div>
@@ -26,10 +26,10 @@ class StartPage extends React.Component {
                 <h1 class="centerText">Witamy na stronie naszej wypożyczalni!</h1>
                 <br/>
                 <h3>Serdecznie zapraszamy do zapoznania się z naszą ofertą.</h3>
-                
-                
+
+
             </div>
-           
+
         )
     }
 

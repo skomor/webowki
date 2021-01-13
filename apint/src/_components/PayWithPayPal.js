@@ -38,9 +38,13 @@ function PayWithPayPal (props) {
 
     if (paidFor) {
         return (
-            <div>
-                Dziękuję za złożenie rezerwacji!
-                Jeśli chcesz dodać wydarzenie rezerwacji do kalendarza, możesz to zrobić tutaj
+            <div class="content">
+                <div>
+
+                    Dziękuję za złożenie rezerwacji!
+                    Jeśli chcesz dodać wydarzenie rezerwacji do kalendarza, możesz to zrobić tutaj
+                </div>
+
                 <br/>
                 <CalendarAdder startTime={cartItems[0].startDate} endTime={cartItems[0].endDate}/>
             </div>
@@ -50,19 +54,22 @@ function PayWithPayPal (props) {
     if (error) {
         return (
             <div>
-                Error in processing order. Please Retry again
+                Wystąpił błąd podczas procesu zapłaty. Spróbuj ponownie
             </div>
         )
     }
     const getProd=(item)=>{
         const {products} = props;
-       for (let i = 0; i < products.items.length; i++) {
-           if (products.items[i].id == item.productId)
-               return products.items[i];
-       }
+        for (let i = 0; i < products.items.length; i++) {
+            if (products.items[i].id == item.productId)
+                return products.items[i];
+        }
     }
     return (
-        <div>
+        <div class="content">
+            <h3>Podsumowanie zamówienia</h3>
+            <hr/>
+            <br/>
             <ListGroup>
                 {cartItems.map((item, index) =>
 
@@ -73,7 +80,9 @@ function PayWithPayPal (props) {
                     </ListGroupItem>)
                 }
             </ListGroup>
-            <div>Total - PLN. {total}</div>
+            <br/>
+            <div><h5>Do zapłaty: {total} ZŁ</h5></div>
+            <br/>
             <div ref={paypalRef} />
         </div>
     )

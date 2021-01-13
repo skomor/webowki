@@ -24,7 +24,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp5.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 19.2\\.NET Core Desktop Libraries\\System\\Components\\Packages": {},

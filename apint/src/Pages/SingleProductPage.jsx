@@ -98,43 +98,43 @@ class SingleProductPage extends React.Component {
         const {id} = this.props.match.params;
 
 
-    /*    if (this.state.dailyOrHourly === "d")
-            this.setState({
-                checkoutItem: {
-                    productId: id,
-                    dailyOrHourly: this.state.dailyOrHourly,
-                    startDate: new Date(this.state.selectionRange.startDate.setHours(0,0,0)),
-                    endDate: new Date(this.state.selectionRange.endDate.setHours(0,0,0)),
-                }
-            });
-        else
-        {
-            this.setState({
-                checkoutItem: {
-                    productId: id,
-                    dailyOrHourly: this.state.dailyOrHourly,
-                    startDate: new Date(this.state.selectedDay.setHours(this.state.selectedHour[0],0,0)),
-                    endDate: new Date(this.state.selectedDay.setHours(this.state.selectedHour[1],0,0)),
-                }
-            });
-        }*/
+        /*    if (this.state.dailyOrHourly === "d")
+                this.setState({
+                    checkoutItem: {
+                        productId: id,
+                        dailyOrHourly: this.state.dailyOrHourly,
+                        startDate: new Date(this.state.selectionRange.startDate.setHours(0,0,0)),
+                        endDate: new Date(this.state.selectionRange.endDate.setHours(0,0,0)),
+                    }
+                });
+            else
+            {
+                this.setState({
+                    checkoutItem: {
+                        productId: id,
+                        dailyOrHourly: this.state.dailyOrHourly,
+                        startDate: new Date(this.state.selectedDay.setHours(this.state.selectedHour[0],0,0)),
+                        endDate: new Date(this.state.selectedDay.setHours(this.state.selectedHour[1],0,0)),
+                    }
+                });
+            }*/
         var toLocalStorage ='';
         if (this.state.dailyOrHourly === "d")
             toLocalStorage ={
-                    productId: id,
-                    dailyOrHourly: this.state.dailyOrHourly,
-                    startDate: new Date(this.state.selectionRange.startDate.setHours(0,0,0)),
-                    endDate: new Date(this.state.selectionRange.endDate.setHours(0,0,0)),
+                productId: id,
+                dailyOrHourly: this.state.dailyOrHourly,
+                startDate: new Date(this.state.selectionRange.startDate.setHours(0,0,0)),
+                endDate: new Date(this.state.selectionRange.endDate.setHours(0,0,0)),
 
             }
         else
         {
             toLocalStorage={
 
-                    productId: id,
-                    dailyOrHourly: this.state.dailyOrHourly,
-                    startDate: new Date(this.state.selectedDay.setHours(this.state.selectedHour[0],0,0)),
-                    endDate: new Date(this.state.selectedDay.setHours(this.state.selectedHour[1],0,0)),
+                productId: id,
+                dailyOrHourly: this.state.dailyOrHourly,
+                startDate: new Date(this.state.selectedDay.setHours(this.state.selectedHour[0],0,0)),
+                endDate: new Date(this.state.selectedDay.setHours(this.state.selectedHour[1],0,0)),
 
             }
         }
@@ -195,10 +195,7 @@ class SingleProductPage extends React.Component {
                                 <td>Producent:</td>
                                 <td>{products.items[selectedProductIndex].brand}</td>
                             </tr>
-                            <tr>
-                                <td>Typ:</td>
-                                <td>{products.items[selectedProductIndex].type} [cm]</td>
-                            </tr>
+
 
                             <tr>
                                 <td>Długość:</td>
@@ -214,7 +211,7 @@ class SingleProductPage extends React.Component {
                             </tr>
                             <tr>
                                 <td>Koszt/doba:</td>
-                                <td>{Math.floor(products.price/6)} PLN</td>
+                                <td>{Math.floor(products.price*3)} PLN</td>
 
                             </tr>
                             <tr>
@@ -232,50 +229,50 @@ class SingleProductPage extends React.Component {
 
                         <h4>Terminarz wypożyczenia</h4>
                         <hr/>
-                        kalendarz
-                    </div>
-                    <FormControl component="fieldset">
-                        <FormLabel component="legend">Gender</FormLabel>
-                        <RadioGroup aria-label="gender" name="gender1" value={dailyOrHourly}
-                                    onChange={this.handleChange}>
-                            <FormControlLabel value={"d"} control={<Radio/>} label="Dziennie"/>
-                            <FormControlLabel value={"h"} control={<Radio/>} label="Na Godziny"/>
-                        </RadioGroup>
-                    </FormControl>
-                    {
-                        dailyOrHourly === "d" ?
-                            <div>
-                                <DateRangePicker
-                                    ranges={[selectionRange]}
-                                    onChange={this.handleSelectForDatePicker}
-                                    minDate={new Date()}
-                                />
-                                <Button onClick={this.onAddButtonClick}>OK</Button>
-                            </div>
-                            : <Calendar
-                                date={selectedDay}
-                                onChange={this.handleSelectForCalendar}
-                                minDate={new Date()}
+                        <div class="centerDiv">
+                            <FormControl component="fieldset">
+                                <RadioGroup aria-label="gender" name="gender1" value={dailyOrHourly}
+                                            onChange={this.handleChange}>
+                                    <FormControlLabel value={"d"} control={<Radio/>} label="Dziennie"/>
+                                    <FormControlLabel value={"h"} control={<Radio/>} label="Na Godziny"/>
+                                </RadioGroup>
+                            </FormControl>
+                            {
+                                dailyOrHourly === "d" ?
+                                    <div>
+                                        <DateRangePicker
+                                            ranges={[selectionRange]}
+                                            onChange={this.handleSelectForDatePicker}
+                                            minDate={new Date()}
+                                        />
+                                        <Button onClick={this.onAddButtonClick}>OK</Button>
+                                    </div>
+                                    : <Calendar
+                                        date={selectedDay}
+                                        onChange={this.handleSelectForCalendar}
+                                        minDate={new Date()}
 
-                            />}
-                    {
-                        dailyOrHourly === "h" && !Array.isArray(selectedDay) ?
-                            <div>
-                                <Typography id="range-slider" gutterBottom>
-                                    Wybierz godzinę
-                                </Typography>
-                                <Slider
-                                    value={selectedHour}
-                                    onChange={this.handleChangeSelectedHour}
-                                    valueLabelDisplay="auto"
-                                    aria-labelledby="range-slider"
-                                    min={9}
-                                    max={18}
-                                    // getAriaValueText={valuetext}
-                                    marks={marks}
-                                />
-                             <Button onClick={this.onAddButtonClick}>OK</Button>
-                            </div> : ""}
+                                    />}
+                            {
+                                dailyOrHourly === "h" && !Array.isArray(selectedDay) ?
+                                    <div>
+                                        <Typography id="range-slider" gutterBottom>
+                                            Wybierz godzinę
+                                        </Typography>
+                                        <Slider
+                                            value={selectedHour}
+                                            onChange={this.handleChangeSelectedHour}
+                                            valueLabelDisplay="auto"
+                                            aria-labelledby="range-slider"
+                                            min={9}
+                                            max={18}
+                                            // getAriaValueText={valuetext}
+                                            marks={marks}
+                                        />
+                                        <Button onClick={this.onAddButtonClick}>OK</Button>
+                                    </div> : ""}
+                        </div>
+                    </div>
 
 
                 </div>}

@@ -15,13 +15,14 @@ class CartGrid extends React.Component {
         const {CartReducer, products} = this.props;
         return (
             <div>
-                <div className="card card-body border-0">
+                <div>
 
                     {
                         CartReducer.checkoutItems.map(product => <CartItem key={product.id} product={product}/>)
+
                     }
 
-                    {PriceCalculator.calculateSumPrice(CartReducer.checkoutItems, products)}
+
 
                 </div>
             </div>
