@@ -43,8 +43,13 @@ class MainPage extends React.Component {
                 {user ? <div>
                         <h1>Witaj {user.firstName}!</h1>
                         <hr/>
-                        <br/>
+                        
                         {/* <p>Zapraszamy do skorzystania z naszych usług.</p> */}
+                        <p>
+                        <Link to="/login">
+                            <div id="logOutBtn">Wyloguj</div>
+                        </Link>
+                    </p> 
                         <h3>Wynajęte produkty:</h3>
                         {users.loading && <em>Loading users...</em>}
                         {/* {CartReducer.rentedItems && <em>CartReducer.rentedItems</em>} */}
@@ -64,25 +69,36 @@ class MainPage extends React.Component {
                             )}
                         </ul>
                         } */}
-                        <div class="cartObject2">
-                            
+                
+                      
                     { products.items && CartReducer.rentedItems && CartReducer.rentedItems.map((item, index) =>
 
                         new Date(item.startTime) > new Date() &&
-                        <ListGroupItem key={item.productId}>
-                            {this.getProd(item).name} - Zapłacono: 
-                             {PriceCalculator.calculatePrice1(this.getProd(item).price,  item.startTime, item.endTime)} ZŁ
-                        </ListGroupItem>)
+                        <div key={item.productId}>
+                            <div className="col-sm-12 p-2 cartObject2">
+                                <div className="col-sm-2 p-2">
+
+                                    <img
+
+                                        style={{ margin: "0 auto", maxHeight: "50px" }}
+                                        src={`data:image/png;base64,${this.getProd(item).photo}`} alt="zjecie" className="img-fluid d-block" />
+                                </div>
+                                <div className="col-sm-10 p-2">
+                                    <h5 className="mb-1">{this.getProd(item).name}</h5>
+                                    <p className="mb-1">Zapłacono: {PriceCalculator.calculatePrice1(this.getProd(item).price, item.startTime, item.endTime)} </p>
+                                    <p className="mb-1">Rozpoczęcie wynajmu: {new Date(item.startTime).toLocaleString()} </p>
+                                    <p className="mb-1">Zakończenie wynajmu: {new Date(item.endTime).toLocaleString()} </p>
+
+                                </div>
+                            </div>          {/* {this.getProd(item).name} - Zapłacono: 
+                             {PriceCalculator.calculatePrice1(this.getProd(item).price,  item.startTime, item.endTime)} ZŁ */}
+                        </div>)
                     }
                     
 
-                </div>
+                
 <br/>
-                        <p>
-                            <Link to="/login">
-                                <div id="logOutBtn">Wyloguj</div>
-                            </Link>
-                        </p>
+                        
                     </div>
                     :
                     <div>OK</div>
