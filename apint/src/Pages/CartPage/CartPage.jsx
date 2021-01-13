@@ -66,7 +66,7 @@ class CartPage extends React.Component {
                         {CartReducer.checkoutItems &&
                         <div className="p-3 text-center text-success">
 
-                            <Link to="/" className="btn btn-outline-success btn-sm">Kontynuuj zakupy</Link>
+                            <Link to="/products" className="btn btn-outline-success btn-sm">Kontynuuj zakupy</Link>
                         </div>
                         }
 

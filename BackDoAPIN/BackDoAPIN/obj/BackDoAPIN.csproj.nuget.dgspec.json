@@ -1,34 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "E:\\_Semestr 7\\_AI\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj": {}
+    "F:\\SEMESTR VII\\AI\\Nowy folder\\webowki\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj": {}
   },
   "projects": {
-    "E:\\_Semestr 7\\_AI\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj": {
+    "F:\\SEMESTR VII\\AI\\Nowy folder\\webowki\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\_Semestr 7\\_AI\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj",
+        "projectUniqueName": "F:\\SEMESTR VII\\AI\\Nowy folder\\webowki\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj",
         "projectName": "BackDoAPIN",
-        "projectPath": "E:\\_Semestr 7\\_AI\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj",
-        "packagesPath": "C:\\Users\\skomo\\.nuget\\packages\\",
-        "outputPath": "E:\\_Semestr 7\\_AI\\BackDoAPIN\\BackDoAPIN\\obj\\",
+        "projectPath": "F:\\SEMESTR VII\\AI\\Nowy folder\\webowki\\BackDoAPIN\\BackDoAPIN\\BackDoAPIN.csproj",
+        "packagesPath": "C:\\Users\\Maciek\\.nuget\\packages\\",
+        "outputPath": "F:\\SEMESTR VII\\AI\\Nowy folder\\webowki\\BackDoAPIN\\BackDoAPIN\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\skomo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress .NET Core Desktop 19.2.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Maciek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp5.0"
+          "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 19.2\\.NET Core Desktop Libraries\\System\\Components\\Packages": {},
-          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },

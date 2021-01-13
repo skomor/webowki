@@ -52,9 +52,9 @@ class CartItem extends React.Component {
                 {currProduct &&
                 <div className="col-sm-10 p-2">
                     <h5 className="mb-1">{currProduct.name}</h5>
-                    <p className="mb-1">Price: {PriceCalculator.calculatePrice(currProduct.price,product.dailyOrHourly,new Date(product.startDate),new Date(product.endDate) )} </p>
-                    <p className="mb-1">StartTime: {new Date(product.startDate).toLocaleString()} </p>
-                    <p className="mb-1">EndTime: {new Date(product.endDate).toLocaleString()} </p>
+                    <p className="mb-1">Cena: {PriceCalculator.calculatePrice(currProduct.price,product.dailyOrHourly,new Date(product.startDate),new Date(product.endDate) )} </p>
+                    <p className="mb-1">Rozpoczęcie wynajmu: {new Date(product.startDate).toLocaleString()} </p>
+                    <p className="mb-1">Zakończenie wynajmu: {new Date(product.endDate).toLocaleString()} </p>
 
                 </div>
                 }
