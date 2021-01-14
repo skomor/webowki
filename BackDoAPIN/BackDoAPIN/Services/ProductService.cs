@@ -9,28 +9,27 @@ namespace BackDoAPIN.Services
 {
     public class ProductService : IProductService
     {
-        private DataContext _context;
-        public ProductService(DataContext context)
+        private IProductRepo _productRepo;
+        public ProductService(DataContext context, IProductRepo productRepo)
         {
-            _context = context;
+            _productRepo = productRepo;
         }
 
         public Task<List<Product>> GetAll()
         {
-            return _context.Product.ToListAsync();
+            return _productRepo.GetAll();
             
         }
 
         public Product GetById(int id)
         {
-            return _context.Product.Find(id);
+            return _productRepo.GetById(id);
         }
 
         public async Task<Product> Create(Product product)
         {
-            await _context.Product.AddAsync(product);
-            await _context.SaveChangesAsync();
-            return product;
+            return _productRepo.Create(product);
+
         }
 
 
@@ -39,14 +38,13 @@ namespace BackDoAPIN.Services
             if (id != product.Id){
                 return false;
             }
-            _context.Entry(product).State = EntityState.Modified;
             try
             {
-                await _context.SaveChangesAsync();
+                await  _productRepo.Update(product);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductExists(id)){
+                if (!_productRepo.ProductExists(id)){
                     return false;
                 }
                 else
@@ -60,19 +58,15 @@ namespace BackDoAPIN.Services
 
         public async Task<bool> Delete(int id)
         {
-            var product = await _context.Product.FindAsync(id);
+            var product = await _productRepo.FindById(id);
             if (product != null)
             {
-                _context.Product.Remove(product);
-                await _context.SaveChangesAsync();
+                await _productRepo.Delete(product);
                 return true;
             }
             return false;
         }
-        private bool ProductExists(int id)
-        {
-            return _context.Product.Any(e => e.Id == id);
-        }
+   
     }
     
 }

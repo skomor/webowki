@@ -10,11 +10,10 @@ namespace BackDoAPIN.Services
 
     public class UserService : IUserService
     {
-        private DataContext _context;
-
-        public UserService(DataContext context)
+        private IUserRepo _userRepo;
+        public UserService( IUserRepo userRepo)
         {
-            _context = context;
+            _userRepo = userRepo;
         }
 
         public User Authenticate(string username, string password)
@@ -22,37 +21,33 @@ namespace BackDoAPIN.Services
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 return null;
 
-            var user = _context.Users.SingleOrDefault(x => x.Username == username);
+            var user = _userRepo.GetByName(username);
 
-            // check if username exists
             if (user == null)
                 return null;
 
-            // check if password is correct
             if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
                 return null;
 
-            // authentication successful
             return user;
         }
 
         public IEnumerable<User> GetAll()
         {
-            return _context.Users;
+            return _userRepo.GetAll();
         }
 
         public User GetById(int id)
         {
-            return _context.Users.Find(id);
+            return _userRepo.GetById(id);
         }
 
         public User Create(User user, string password)
         {
-            // validation
             if (string.IsNullOrWhiteSpace(password))
                 throw new AppException("Password is required");
 
-            if (_context.Users.Any(x => x.Username == user.Username))
+            if (_userRepo.CheckIfExistsByName(user.Username))
                 throw new AppException("Username '" + user.Username + "' is already taken");
 
             byte[] passwordHash, passwordSalt;
@@ -61,15 +56,14 @@ namespace BackDoAPIN.Services
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            _userRepo.Create(user);
 
-            return user;
+            return user;         
         }
 
         public void Update(User userParam, string password = null)
         {
-            var user = _context.Users.Find(userParam.Id);
+            var user = _userRepo.GetById(userParam.Id);
 
             if (user == null)
                 throw new AppException("User not found");
@@ -77,7 +71,7 @@ namespace BackDoAPIN.Services
             if (userParam.Username != user.Username)
             {
                 // username has changed so check if the new username is already taken
-                if (_context.Users.Any(x => x.Username == userParam.Username))
+                if (_userRepo.CheckIfExistsByName(user.Username))
                     throw new AppException("Username " + userParam.Username + " is already taken");
             }
 
@@ -96,17 +90,16 @@ namespace BackDoAPIN.Services
                 user.PasswordSalt = passwordSalt;
             }
 
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            _userRepo.Update(user);
+
         }
 
         public void Delete(int id)
         {
-            var user = _context.Users.Find(id);
+            var user = _userRepo.GetById(id);
             if (user != null)
             {
-                _context.Users.Remove(user);
-                _context.SaveChanges();
+                _userRepo.Delete(user);
             }
         }
 

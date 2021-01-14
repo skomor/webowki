@@ -62,8 +62,11 @@ namespace BackDoAPIN
                 };
             });
 
+            services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRentalRepo, RentalRepo>();
             services.AddScoped<IRentalService, RentalService>();
+            services.AddScoped<IProductRepo, ProductRepo>();
             services.AddScoped<IProductService, ProductService>();
         }
 

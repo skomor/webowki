@@ -13,27 +13,27 @@ namespace BackDoAPIN.Services
     [Authorize]
     public class RentalService : IRentalService
     {
-        private DataContext _context;
-        
-        public RentalService(DataContext context)
+        private IRentalRepo _rentalRepo;
+
+        public RentalService(IRentalRepo rentalRepo)
         {
-            _context = context;
+            _rentalRepo = rentalRepo;
         }
 
         public Task<List<ProductRental>> GetAll()
         {
-            return _context.ProductRental.ToListAsync();
+            return _rentalRepo.GetAll();
         }
 
         public Task<List<ProductRental>> GetByUserId(int userId)
         {
-            return _context.ProductRental.Where(rental => rental.UserId == userId).ToListAsync();
+            return _rentalRepo.GetByUserId(userId);
         }
 
-        public async  Task<List<ProductRental>> CreateRange(List<RentalDto> rentalDto)
+        public async Task<List<ProductRental>> CreateRange(List<RentalDto> rentalDto)
         {
             List<ProductRental> productRental = new List<ProductRental>();
-            
+
             foreach (var dto in rentalDto){
                 var product = new ProductRental();
                 product.ProductId = dto.ProductId;
@@ -42,11 +42,9 @@ namespace BackDoAPIN.Services
                 product.EndTime = dto.EndDate;
                 product.RentalTime = DateTime.Now;
                 productRental.Add(product);
-              
-
             }
-            await _context.ProductRental.AddRangeAsync(productRental);
-             await _context.SaveChangesAsync();
+
+            await _rentalRepo.CreateRange(productRental);
             return productRental;
         }
 
@@ -55,18 +53,15 @@ namespace BackDoAPIN.Services
             if (id != productRental.Id){
                 return false;
             }
-            _context.Entry(productRental).State = EntityState.Modified;
-            try
-            {
-                await _context.SaveChangesAsync();
+
+            try{
+              await  _rentalRepo.Update(productRental);
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductRentalExists(id)){
+            catch (DbUpdateConcurrencyException){
+                if (!_rentalRepo.ProductRentalExists(id)){
                     return false;
                 }
-                else
-                {
+                else{
                     throw;
                 }
             }
@@ -76,19 +71,15 @@ namespace BackDoAPIN.Services
 
         public async Task<bool> Delete(int id)
         {
-            var productRental = await _context.ProductRental.FindAsync(id);
-            if (productRental != null)
-            {
-                _context.ProductRental.Remove(productRental);
-                await _context.SaveChangesAsync();
+            var productRental = await _rentalRepo.FindById(id);
+            if (productRental != null){
+                await _rentalRepo.Delete(productRental);
                 return true;
             }
+
             return false;
         }
-        
-        private bool ProductRentalExists(int id)
-        {
-            return _context.ProductRental.Any(e => e.Id == id);
-        }
+
+      
     }
 }
